@@ -30,14 +30,41 @@ int totalPoints = TotalPoints(points);
 System.Console.WriteLine($"Season total: {totalPoints}");
 
 
+// === Part 2: Game Night === 
 
+int bestScoreTonight = 0;
+string winnerTonight = "";
+
+for(int i = 0; i < players.Length; i++)
+{
+    System.Console.Write($"Points tonight for {players[i]}: ");
+    int score = Convert.ToInt32(Console.ReadLine());
+    while (score > 20 || score < 0)
+    {
+        System.Console.WriteLine("Points must be from 0 to 20.");
+        Console.Write($"Points tonight for {players[i]}: ");
+        score = Convert.ToInt32(Console.ReadLine());
+    }
+
+ int season = Convert.ToInt32(points[i]) + score;
+    points[i] = season.ToString();
+
+  if (score > bestScoreTonight)
+    {
+        bestScoreTonight = score;
+        winnerTonight = players[i];
+    }
+}
+System.Console.WriteLine($"Tonight's Winner: {winnerTonight} with {bestScoreTonight}");
+
+File.WriteAllLines(POINTS_FILE, points);
+System.Console.WriteLine("Saved points.txt");
 
 
 
 
 
 //THESE ARE ALL MY METHODS
-
 
 
 static int LeaderIndex(string[] points)
